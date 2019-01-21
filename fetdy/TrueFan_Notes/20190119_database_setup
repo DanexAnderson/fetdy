@@ -1,0 +1,24 @@
+19 January:
+
+    Build Landing Page:
+                        1) Databases: Local and Online Mongo and Mysql.
+                        2) Setup ngBootstrap.
+                        3) Install Angular and Cordova
+                        4) Design Homepage.
+Steps:
+
+    1) npm init --yes (Generate package.json within server folder)
+    2) npm install express body-parser cors mongoose bcryptjs jsonwebtoken passport passport-jwt  --save
+    3) npm install --save-dev babel-cli babel-preset-env
+    4) touch .babelrc in backend folder
+    5) add to package.json scripts : "dev": "babel-watch server.js"
+    6) create server.js file. routes/api
+    7) Install MongoDB: install dependencies manually via terminal then installar.exe
+    7.2) sudo service mongod start, sudo service mongod stop,
+    8) app.use(express.static(path.join(__dirname,'public'))) create public folder for angular build.
+    9) Install lamp sudo apt install lamp-server^
+    10) install php7.1, install phpmyadmin , sudo service apache2 restart
+    11) sudo cp /etc/phpmyadmin/apache.conf /etc/apache2/conf-available/phpmyadmin.conf
+    12)  Add mysql auth:  ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'ur pwd';
+    13) sudo ng add @ng-bootstrap/schematics
+    14) sudo cordova run browser ; sudo cordova platform add android ; sudo cordova run android/ --emulator ;
