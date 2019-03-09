@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const mysql = require('mysql'); 
+const mysql = require('mysql');
 //const passport = require('passport')
 //const http = require('http').Server(express); // http server
 
@@ -10,6 +10,7 @@ const connect_online = mysql.createConnection({ // Mysql Connection
         user     : 'truefan',
         password : 'knox2005',
         database : 'truefandb',
+        port: 3036,
     });
 
     const connect_local = mysql.createConnection({ // Mysql Connection
@@ -19,14 +20,14 @@ const connect_online = mysql.createConnection({ // Mysql Connection
         database : 'truefandb',
     });
 
-    // let connect = connect1;
+    // let connect = connect_online;
      let connect = connect_local
 
 router.get('/fans',(req,res) =>{
     let data = {
         "Data":""
     };
-    
+
     connect.query("SELECT * from fans",function(err, rows, fields){
         if (err) throw err;
         //console.log('');

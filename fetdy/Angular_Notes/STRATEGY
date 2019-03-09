@@ -1,0 +1,55 @@
+
+1) Look up Cloudinary , cloudflare
+
+Strategy:
+
+    1) Start out on GitHub pages for static hosting, Heroku Nodejs hosting, MongoDB Atlas
+       for database, firebase and Cloudinary for storage, use cloudfare for cache(CDN).
+    2) If Grow beyond Heroku Move to Google-Compute-Engine 12 month free trial using Docker.
+    3) After 12 Months move to AWS EC2 free trail with Docker.
+    4) After 12 Months Go A2 hosting or DigitalOcean VPS hosting.
+
+After free:
+
+    1) Use Google Storage and AWS S3 Storage for files.
+    2) Store most resent uploads on Cloudinary accounts for 3 month.
+    3) After one month move files equally to Google storage and S3.
+    4) Use firebase storage for profilepics and redundant storage for Cloudinarys.
+
+
+Development:
+
+    1) Setup Parse and Docker for Google Compute Engine.
+    2) Use 2 Cloudinary accounts and 2 firebase accounts.
+        i) Heroku Account for hosting
+    3) Cloudfare will sit between static files and server.
+
+Load Sharing:
+
+    1) ProfilePic loads will be share between firebase Accounts.
+    2) Cloudinary Account 2 will be the ProfilePic redundant storage.
+    3) firebase Storage 2 will be the Cloudinary redundant storage.
+    4) Connection to storages will be randomize, based on a boolean variable
+        if a storage is full or there was an error, load is redirected to redundant storage.
+
+Database Setup:
+
+    1) Two (2) NoSql MongoDB Atlas will be used.
+    2) test Database for amount of users currently logged in, balance users among firebase Accounts.
+    3) MongoDB one (1) => User, Album, Post, Videos.
+       MongoDB two (2) => Photos, Comments.
+
+Limitation:
+
+    The Heroku Service experiences downtime.
+ 1) Create Service that only update Angular if there is a response from the service.
+ 2) Use Session and LocalStorage to Keep Users logged in unless log out.
+    Store profilepics and user log in creditials in LocalStorage.
+ 3) Nodejs Server to create a Json file, xmlhttp request for server created Json file.
+     Ajax html5 hrx call to upload the Json file on static host.
+ 4)  Nodejs file system: fs.watch() to watch for database changes, onchanges a service gets notified
+     calls Ajax html file to update Json file.
+
+
+
+

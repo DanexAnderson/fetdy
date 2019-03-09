@@ -1,0 +1,15 @@
+ 21 January
+
+
+ HomePage :
+            1) HomePage
+            2) Signin
+            3) signup
+
+1) change Angular.json output location from "dist/fetdy" to "cordova/www"
+2) npm install sass-loader node-sass --save-dev -f
+3) npm install --save @capacitor/cli @capacitor/core ; npm install --save @capacitor/android@latest
+4) Setup Android Studio => /opt/android-studio/bin/studio.sh
+5) npx cap add android ; npx cap sync ; npx cap copy ; npx cap open android .
+6) for production build :  npm run build --prod
+

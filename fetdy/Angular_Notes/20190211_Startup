@@ -1,0 +1,39 @@
+February 11, Backend Learning
+
+
+Nodejs and PHP backend; MongoDB and MySQL Database.
+Cloudinary | cloudflare for Image upload | CDN
+
+1) MongoDB with Nodejs  => POST, User Auth
+
+2) Nodejs with MySQL    => User Auth sort local, 50% Routing; Landing Page, Homepage, User Profile
+
+3) PHP Laravel          => User Auth; sort online , 50% Routing; Album Routes, Photos, upload
+
+All 3 sort same auth.. on retrieval all 3 responce auth must be true and equivalent.
+
+
+  Photo upload and post Application:
+
+1) MySQL : User, POST, Album Tables.
+
+  A) Album => album_id, user_id, description, path.
+  B) POST => post_id, user_id, album_id
+
+
+  return post => MySQL  ; return => Album =>  Laravel
+
+
+2) MongoDB : Comments, Photos.
+
+  Comments => comment_id , post_id, comment   ; photo_id, album_id, name, description
+  MongoDB structure: Embedded | Referenced
+
+3) Profile pic upload => JavaScript ; Album upload => PHP
+
+
+
+
+
+
+

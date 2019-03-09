@@ -1,0 +1,80 @@
+<br>
+<div class='container '>
+
+<mat-spinner *ngIf='isloading'></mat-spinner>
+
+<!-- //*** FormsModule *** <form (submit)="onPost(postForm)" *ngIf='!isloading' #postForm='ngForm'> -->
+    <form [formGroup]="form" (submit)="onPost()" *ngIf='!isloading' >
+  <mat-card >
+
+
+      <label>Title</label><br>
+
+      <mat-form-field class='w-100'>
+        <input matInput  placeholder="Title" formControlName='title' class='bg-light p-3'>
+        <mat-error *ngIf="form.get('title').invalid && [valid]==1">Please Enter Title</mat-error>
+      </mat-form-field>
+
+<!--  //******* Using FormsModule ***********
+      <mat-form-field class='w-100'>
+          <input matInput  placeholder="Title" name='title' class='bg-light p-3'
+           [ngModel]='post?.title' [required]='[valid]==1?true:false' [minlength]='[valid]==1?2:3' #title='ngModel'>
+          <mat-error *ngIf="title.invalid">Please Enter Title</mat-error>
+        </mat-form-field> -->
+
+        <br><br>
+<div class='d-inline-block'>
+      <div class='d-inline'>
+       <button  mat-stroked-button  type='button' (click)='filepicker.click()'> <b>Pick Image</b></button>
+       <input type='file' class='d-none' (change)="onImagePicked($event)" #filepicker>
+      </div>
+       <div class='d-inline ml-5 ' *ngIf="imagePrev !=='' && imagePrev && form.get('image').valid">
+        <img class='img-thumbnail w-50 h-50' [src]="imagePrev" [alt]='form.value.title'>
+       </div>
+</div>
+ <!--  <label>Input</label><br>          //***** Two way data binding ******
+
+  <mat-form-field class='w-100'>
+  <input matInput [(ngModel)]="enterTitle" name='title' placeholder="Text input" />
+</mat-form-field> -->
+
+<br><br>
+
+<br><br>
+<mat-form-field class='w-100'>
+    <textarea matInput placeholder="Comment Field" formControlName='content' class='bg-light p-3'
+       ></textarea>
+      <mat-error *ngIf="form.get('content').invalid && [valid]==1">Please Add Some Content</mat-error>
+    </mat-form-field>
+    </mat-card>
+    <br>
+
+<!--     //******* Using FormsModule **********
+<mat-form-field class='w-100'>
+    <textarea matInput placeholder="Comment Field" name='content' class='bg-light p-3'
+      [ngModel]='post?.content' [required]='[valid]==1?true:false' [minlength]='[valid]==1?2:3' #content='ngModel'></textarea>
+      <mat-error *ngIf="content.invalid">Please Add Some Content</mat-error>
+    </mat-form-field>
+    </mat-card>
+    <br> -->
+
+
+<!-- <mat-form-field class='w-100'>          //**** Function data binding *****
+
+<textarea matInput [value] ="enterContent" placeholder="Comment Field"  #postInput></textarea>
+</mat-form-field>
+</mat-card>
+<br>
+ <button mat-raised-button color='primary' type='submit'  (click)='onPost(postInput)'>save</button>
+ -->
+
+ <button mat-raised-button color='primary' type='submit'>save</button>
+
+</form>
+<br><br>
+
+</div>
+
+<!-- <app-list (postCreate)='onPostAdd($event)'></app-list> -->
+
+<app-list ></app-list>

@@ -1,0 +1,9 @@
+
+  Photo upload and post Application:
+
+Lazy Loading and preloading, PWA setup.
+
+1) On backend: npm install --save multer
+
+
+

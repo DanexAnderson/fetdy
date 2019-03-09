@@ -3,4 +3,5 @@ Git Commands :
 
 1) git init
 2) update gitignore:  git rm -r --cached .
-3) git reset --hard HEAD~4
+3) git reset --hard HEAD~1  /  git rebase -i HEAD~1
+4) git

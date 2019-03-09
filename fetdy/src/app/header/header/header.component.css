@@ -1,0 +1,5 @@
+.shadow {
+  text-shadow: 1px .0px white;
+}
+
+.shadow:hover{color:white;}

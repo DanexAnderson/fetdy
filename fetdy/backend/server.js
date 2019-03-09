@@ -8,11 +8,12 @@ const path = require('path');
 
 const mongo = require('./routes/mongo');
 const sql = require('./routes/mysql');
+const post = require('./routes/post');
 
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname,'public')));
+app.use(express.static(path.join(__dirname,'public'))); // create link to public folder
 
 // const db = 'mongodb://Danex:knox2005@ds159204.mlab.com:59204/truefanmessages'
 
@@ -28,6 +29,7 @@ connect.once('open', ()=> console.log('MongoDB Connected Successful'))
 
 app.use('/', mongo)
 app.use('/', sql)
+app.use('/', post)
 
 const PORT = process.env.PORT ||  3001;
 
