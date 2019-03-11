@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CreateComponent } from './post/create/create.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatInputModule, MatCardModule, MatButtonModule } from '@angular/material';
+import { MatInputModule, MatCardModule, MatButtonModule, MatPaginatorModule } from '@angular/material';
 import { MatToolbarModule, MatExpansionModule, MatProgressSpinnerModule } from '@angular/material';
 import { HeaderComponent } from './header/header/header.component';
 import { ListComponent } from './post/list/list.component';
@@ -26,7 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatInputModule, MatCardModule, MatToolbarModule,
     AppRoutingModule, MatButtonModule, MatExpansionModule,
     // NgbModule.forRoot()
-    NgbModule, MatProgressSpinnerModule,
+    NgbModule, MatProgressSpinnerModule, MatPaginatorModule,
     BrowserAnimationsModule, ReactiveFormsModule
     // ,FormsModule
   ],

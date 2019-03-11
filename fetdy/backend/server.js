@@ -10,6 +10,7 @@ const mongo = require('./routes/mongo');
 const sql = require('./routes/mysql');
 const post = require('./routes/post');
 
+
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
@@ -30,6 +31,7 @@ connect.once('open', ()=> console.log('MongoDB Connected Successful'))
 app.use('/', mongo)
 app.use('/', sql)
 app.use('/', post)
+app.use('/images', express.static(path.join(__dirname,'images')));
 
 const PORT = process.env.PORT ||  3001;
 

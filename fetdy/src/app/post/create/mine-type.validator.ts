@@ -1,8 +1,11 @@
 import { AbstractControl } from '@angular/forms';
-import { Observable, Observer } from 'rxjs';
+import { Observable, Observer, of } from 'rxjs';
 
 export const mimeType = (control: AbstractControl):
 Promise<{[Key: string]: any}> | Observable <{[Key: string]: any}> => {
+if (typeof(control.value) === 'string') {
+  return of(null);
+}
 const file = control.value as File;
 const fileReader = new FileReader();
 const fileOb = Observable.create((observer: Observer<{[Key: string]: any}>) => {

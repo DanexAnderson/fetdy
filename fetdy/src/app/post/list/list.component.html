@@ -1,5 +1,5 @@
 
-<div class="container pt-2">
+<div class="container pt-2 ">
 
 <mat-spinner *ngIf='isloading'></mat-spinner>
 <mat-accordion multi='true' *ngIf='posts.length >0 && !isloading'>
@@ -8,6 +8,10 @@
   <mat-expansion-panel-header class='card-title bg-light text-capitalize'>
     {{post.title}}
   </mat-expansion-panel-header>
+
+ <div >
+   <img class=' h-75 w-100 mb-5 rounded shadow' [src]='post.imagePath' [alt]='post.title'/>
+ </div>
 
   <p class='card-body bgcard'> {{post.content}} </p>
 
@@ -19,6 +23,8 @@
 </mat-expansion-panel>
 
   </mat-accordion>
+  <mat-paginator [length]="totalPost" [pageSize]="postsPerPage" (page)="onChangedPage($event)"
+   [pageSizeOptions]="pageSizeOption" *ngIf='posts.length >0'></mat-paginator>
   <br>
 <h3><p *ngIf="posts.length <= 0"> No posts added yet!!  </p> </h3>
 

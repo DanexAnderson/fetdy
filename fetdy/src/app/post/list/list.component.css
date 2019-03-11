@@ -2,3 +2,7 @@
   background: rgba(255, 209, 216, 0.26);
   border-radius: 7px;
 }
+
+.mat-spinner {
+  margin: auto;
+}
