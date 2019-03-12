@@ -24,7 +24,7 @@
 </nav> -->
 
 <nav class="navbar navbar-expand-lg  fixed-top">
-    <a class="navbar-brand" routerLink="">Angular</a>
+    <a class="navbar-brand ml-5" routerLink="">Angular</a>
 
     <button class="navbar-toggler hidden-sm-up" type="button"  type="button"
     (click)="isNavbarCollapsed = !isNavbarCollapsed" data-target="#navbarsDefault"
@@ -36,7 +36,7 @@
     <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse" id="navbarsDefault">
 
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item" >
+            <li *ngIf='userIsAuth' class="nav-item" >
                 <a routerLink='/create' mat-button (click)="isNavbarCollapsed = !isNavbarCollapsed"
                  class="nav-link shadow py-2 py-lg-0 pr-lg-2 pl-lg-2 pr-5 pl-5 ml-2"
                 color = 'primary' routerLinkActive="mat-warn shadow-none border-bottom"><b> New Post </b></a>
@@ -53,7 +53,7 @@
             </li>
 
         </ul>
-        <ul class="navbar-nav">
+        <ul class="navbar-nav mr-5">
     <!--       <li>
 
               <button mat-icon-button [matMenuTriggerFor]="menu">
@@ -77,22 +77,30 @@
           </li>
  -->
             <li class="nav-item dropdown mr-5" ngbDropdown>
-               <h2> <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink"
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink"
                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ngbDropdownToggle>
 
-                </a></h2>
-                <div class="dropdown-menu mr-5" aria-labelledby="navbarDropdownMenuLink" ngbDropdownMenu>
+                </a>
+                <div class="dropdown-menu mr-5 border-0 shadow" aria-labelledby="navbarDropdownMenuLink" ngbDropdownMenu>
                     <a class="dropdown-item mr-5" >Action</a>
                     <a class="dropdown-item mr-5" >Another action</a>
                 </div>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" routerLink="/login"  routerLinkActive="mat-accent" >
-
-                  <mat-icon >account_circle</mat-icon></a>
+            <li class="nav-item" *ngIf="route !='/login'">
+                <a class="nav-link" [routerLink]="userIsAuth ? ['/'] : ['/login']"
+                  (click)="isNavbarCollapsed = !isNavbarCollapsed">
+                  <mat-icon class='shadow-sm rounded bg-transparent mr-2 '>account_circle</mat-icon>
+                  <span *ngIf='!userIsAuth'>Login</span></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" routerLink="/signup" >Signup</a>
+            <li *ngIf="!userIsAuth && route =='/login'" class="nav-item">
+                <a class="nav-link " (click)="isNavbarCollapsed = !isNavbarCollapsed"
+                 routerLink="/signup" >Signup</a>
+            </li>
+
+            <li *ngIf='userIsAuth' class="nav-item">
+                <button mat-button (click)="onLogout()"
+                class="nav-link shadow-sm py-2 py-lg-0 pr-lg-2 pl-lg-2 pr-5 pl-5 ml-2 mt-1"
+                color ='primary'  routerLinkActive="text-info " ><b> Logout </b></button>
             </li>
         </ul>
     </div>

@@ -5,6 +5,12 @@ Lazy Loading and preloading, PWA setup.
 
 1) On backend for mime-type validation: npm install --save multer
 2) On backend for unique Email Address: npm install --save mongoose-unique-validator
+3) On backend JWT: npm install --save jsonwebtoken
+4) Add interceptor.ts to app.module => providers
+     providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}]
+5) Add auth.guard.ts file to app-routing.module => providers: [AuthGuard]
+    { path: 'create', component: CreateComponent, canActivate: [AuthGuard] }
+6)
 
 
 

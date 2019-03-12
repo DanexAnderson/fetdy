@@ -4,6 +4,7 @@ const multer = require('multer');
 const path = require('path');
 
 const Post = require('../models/post');
+const checkAuth = require('../middleware/check-auth');
 
 const MIME_TYPE_MAP = {
   'image/png': 'png',
@@ -30,7 +31,7 @@ const storage = multer.diskStorage({
 
 //------------------ Post Data --------------------//'/postdata'
 
-router.post("/postdata", multer({storage: storage}).single('image'),(req,res,next)=>{
+router.post("/postdata",checkAuth, multer({storage: storage}).single('image'),(req,res,next)=>{
 
   const url = req.protocol + '://' + req.get('host');
   const post = new Post({
@@ -90,7 +91,7 @@ postQuery.then(documents => {
 
 });
 
-router.delete('/deletepost/:id', (req, res) => {
+router.delete('/deletepost/:id', checkAuth, (req, res) => {
 
   Post.deleteOne({_id: req.params.id}).then(result => {
 
@@ -98,7 +99,7 @@ router.delete('/deletepost/:id', (req, res) => {
   res.status(200).json({message: "Post deleted! "});
 });
 
-router.put('/updatepost/:id',multer({storage: storage}).single('image'), (req, res)=>{
+router.put('/updatepost/:id',checkAuth ,multer({storage: storage}).single('image'), (req, res)=>{
   let imagePath = req.body.imagePath;
   if (req.file){
     const url = req.protocol + '://' + req.get('host');

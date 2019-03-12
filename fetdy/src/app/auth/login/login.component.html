@@ -1,8 +1,6 @@
 <br>
 <div class='container mt-5'>
 
-<mat-spinner *ngIf='isloading'></mat-spinner>
-
 <h2 class='text-primary text-center mb-4'>Login</h2>
 
     <form (submit) = "onLogin(loginForm)" *ngIf='!isloading' #loginForm='ngForm'>
@@ -11,7 +9,7 @@
       <mat-form-field class='w-100'>
         <input matInput  placeholder="Email" name='email' ngModel
         type='email'class='bg-light p-2' #emailInput="ngModel" required email>
-        <mat-error *ngIf="emailInput.invalid && [valid]==true">Please Enter Valid Email</mat-error>
+        <mat-error *ngIf="emailInput.invalid && [valid]==1">Please Enter Valid Email</mat-error>
       </mat-form-field>
 <br><br>
 
@@ -20,12 +18,13 @@
     <input matInput type='password' ngModel name='password' required
      placeholder="Password" class='bg-light p-2 ' #passwordInput ="ngModel"
        />
-      <mat-error *ngIf="passwordInput.invalid && [valid]==true">Please Enter a Valid Password</mat-error>
+      <mat-error *ngIf="passwordInput.invalid && [valid]==1">Please Enter a Valid Password</mat-error>
     </mat-form-field>
 
 
-  <button class='mt-3 pl-2 pr-2' mat-raised-button color='accent' type='submit'>Login</button>
+  <button *ngIf='!isloading' class='mt-3 pl-2 pr-2' mat-raised-button color='primary' type='submit'>Login</button>
     </mat-card>
+    <mat-spinner *ngIf='isloading'></mat-spinner>
 
 </form>
 <br><br>

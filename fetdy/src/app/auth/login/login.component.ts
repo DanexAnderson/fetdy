@@ -1,3 +1,4 @@
+import { AuthService } from './../auth.service';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
@@ -9,13 +10,18 @@ import { NgForm } from '@angular/forms';
 export class LoginComponent implements OnInit {
 
   isloading = false;
-  valid = false;
+  valid = 0; // mat error form true or false
 
-  constructor() { }
+  constructor(public authService: AuthService) { }
 
   onLogin(form: NgForm) {
+    this.valid = 1;
+    if (form.invalid) {
+      return;
+    }
 
-    console.log(form.value);
+    this.isloading = true;
+    this.authService.loginUser(form.value.email, form.value.password);
   }
 
   ngOnInit() {
