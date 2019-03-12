@@ -1,5 +1,5 @@
 <br>
-<div class='container '>
+<div class='container mt-5'>
 
 <mat-spinner *ngIf='isloading'></mat-spinner>
 
@@ -11,7 +11,7 @@
       <label>Title</label><br>
 
       <mat-form-field class='w-100'>
-        <input matInput  placeholder="Title" formControlName='title' class='bg-light p-3'>
+        <input matInput  placeholder="Title" formControlName='title' class='bg-light p-3 shadow-sm'>
         <mat-error *ngIf="form.get('title').invalid && [valid]==1">Please Enter Title</mat-error>
       </mat-form-field>
 
@@ -42,7 +42,7 @@
 
 <br><br>
 <mat-form-field class='w-100'>
-    <textarea matInput placeholder="Comment Field" formControlName='content' class='bg-light p-3'
+    <textarea matInput placeholder="Comment Field" formControlName='content' class='bg-light p-3 shadow-s'
        ></textarea>
       <mat-error *ngIf="form.get('content').invalid && [valid]==1">Please Add Some Content</mat-error>
     </mat-form-field>
@@ -77,4 +77,4 @@
 
 <!-- <app-list (postCreate)='onPostAdd($event)'></app-list> -->
 
-<app-list ></app-list>
+<!-- <app-list ></app-list> -->

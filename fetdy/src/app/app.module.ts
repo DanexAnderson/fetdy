@@ -6,11 +6,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CreateComponent } from './post/create/create.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatInputModule, MatCardModule, MatButtonModule, MatPaginatorModule } from '@angular/material';
-import { MatToolbarModule, MatExpansionModule, MatProgressSpinnerModule } from '@angular/material';
+import { MatInputModule, MatCardModule, MatButtonModule, MatPaginatorModule, MatIconModule } from '@angular/material';
+import { MatToolbarModule, MatExpansionModule, MatProgressSpinnerModule, MatMenuModule } from '@angular/material';
 import { HeaderComponent } from './header/header/header.component';
 import { ListComponent } from './post/list/list.component';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './auth/login/login.component';
+import { SignupComponent } from './auth/signup/signup.component';
 
 
 
@@ -19,16 +21,18 @@ import { HttpClientModule } from '@angular/common/http';
     AppComponent,
     CreateComponent,
     HeaderComponent,
-    ListComponent
+    ListComponent,
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
-    BrowserModule, HttpClientModule,
+    BrowserModule, HttpClientModule, FormsModule,
     MatInputModule, MatCardModule, MatToolbarModule,
     AppRoutingModule, MatButtonModule, MatExpansionModule,
     // NgbModule.forRoot()
     NgbModule, MatProgressSpinnerModule, MatPaginatorModule,
-    BrowserAnimationsModule, ReactiveFormsModule
-    // ,FormsModule
+    BrowserAnimationsModule, ReactiveFormsModule,
+    MatMenuModule, MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

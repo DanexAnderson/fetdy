@@ -3,7 +3,8 @@
 
 Lazy Loading and preloading, PWA setup.
 
-1) On backend: npm install --save multer
+1) On backend for mime-type validation: npm install --save multer
+2) On backend for unique Email Address: npm install --save mongoose-unique-validator
 
 
 

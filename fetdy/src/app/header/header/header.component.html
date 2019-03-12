@@ -1,15 +1,102 @@
-<mat-toolbar color = "primary">
+<mat-toolbar color = "">
 
+
+<!-- <nav>
  <ul class='nav '>
 
  <li class='nav-item'>
-   <a routerLink='/' mat-button class="nav-link shadow" routerLinkActive="mat-warn"><h2> New Post </h2></a>
+   <a routerLink='/' mat-button class="nav-link shadowW" routerLinkActive="mat-warn"><b> New Post </b></a>
   </li>
 
   <li class='nav-item '>
-    <a mat-button routerLink='/list' class="nav-link shadow"
-    routerLinkActive="mat-accent"><h2 >List Post</h2></a>
+    <a mat-button routerLink='/list' class="nav-link shadowB"
+    routerLinkActive="mat-accent"><b>List Post</b></a>
   </li>
 
  </ul>
+
+ <ul class='navbar-nav mr-auto'>
+    <li class='nav-item  mr-auto'>
+      <a mat-button routerLink='/list' class="nav-link shadowB"
+      routerLinkActive="mat-accent"><b>List Post</b></a>
+    </li>
+</ul>
+</nav> -->
+
+<nav class="navbar navbar-expand-lg  fixed-top">
+    <a class="navbar-brand" routerLink="">Angular</a>
+
+    <button class="navbar-toggler hidden-sm-up" type="button"  type="button"
+    (click)="isNavbarCollapsed = !isNavbarCollapsed" data-target="#navbarsDefault"
+     aria-controls="navbarsDefault" aria-expanded="false" aria-label="Toggle navigation">
+
+        <span class="navbar-toggler-icon "><mat-icon>more_vert</mat-icon></span>
+    </button>
+
+    <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse" id="navbarsDefault">
+
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item" >
+                <a routerLink='/create' mat-button (click)="isNavbarCollapsed = !isNavbarCollapsed"
+                 class="nav-link shadow py-2 py-lg-0 pr-lg-2 pl-lg-2 pr-5 pl-5 ml-2"
+                color = 'primary' routerLinkActive="mat-warn shadow-none border-bottom"><b> New Post </b></a>
+            </li>
+            <li class="nav-item" >
+                <a mat-button routerLink='/list' (click)="isNavbarCollapsed = !isNavbarCollapsed"
+                class="nav-link shadow py-2 py-lg-0 pr-lg-2 pl-lg-2 pr-5 pl-5 ml-2"
+              color ='primary'  routerLinkActive="text-warning shadow-none border-bottom"><b> List Post </b></a>
+            </li>
+            <li class="nav-item">
+                <a mat-button routerLink='/login' (click)="isNavbarCollapsed = !isNavbarCollapsed"
+                class="nav-link shadow py-2 py-lg-0 pr-lg-2 pl-lg-2 pr-5 pl-5 ml-2"
+                color ='primary'  routerLinkActive="text-warning shadow-none border-bottom"><b> Soon </b></a>
+            </li>
+
+        </ul>
+        <ul class="navbar-nav">
+    <!--       <li>
+
+              <button mat-icon-button [matMenuTriggerFor]="menu">
+                  <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu" xPosition="before" yPosition="above" [overlapTrigger]="false">
+                  <button mat-menu-item>
+                    <mat-icon>dialpad</mat-icon>
+                    <span>Redial</span>
+                  </button>
+                  <button mat-menu-item disabled>
+                    <mat-icon>voicemail</mat-icon>
+                    <span>Check voicemail</span>
+                  </button>
+                  <button mat-menu-item>
+                    <mat-icon>notifications_off</mat-icon>
+                    <span>Disable alerts</span>
+                  </button>
+                </mat-menu>
+
+          </li>
+ -->
+            <li class="nav-item dropdown mr-5" ngbDropdown>
+               <h2> <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ngbDropdownToggle>
+
+                </a></h2>
+                <div class="dropdown-menu mr-5" aria-labelledby="navbarDropdownMenuLink" ngbDropdownMenu>
+                    <a class="dropdown-item mr-5" >Action</a>
+                    <a class="dropdown-item mr-5" >Another action</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/login"  routerLinkActive="mat-accent" >
+
+                  <mat-icon >account_circle</mat-icon></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/signup" >Signup</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
 </mat-toolbar>

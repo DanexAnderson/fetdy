@@ -9,6 +9,7 @@ const path = require('path');
 const mongo = require('./routes/mongo');
 const sql = require('./routes/mysql');
 const post = require('./routes/post');
+const user = require('./routes/user');
 
 
 const app = express();
@@ -31,6 +32,7 @@ connect.once('open', ()=> console.log('MongoDB Connected Successful'))
 app.use('/', mongo)
 app.use('/', sql)
 app.use('/', post)
+app.use('/', user)
 app.use('/images', express.static(path.join(__dirname,'images')));
 
 const PORT = process.env.PORT ||  3001;
