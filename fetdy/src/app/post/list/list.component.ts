@@ -24,6 +24,7 @@ export class ListComponent implements OnInit, OnDestroy {
   pageSizeOption = [2, 3, 5, 10];
   private authStatusSub: Subscription;
   userIsAuth = false;
+  userId: string;
 
   onChangedPage(pageData: PageEvent) {
     this.isloading = true;
@@ -36,6 +37,7 @@ export class ListComponent implements OnInit, OnDestroy {
     // this.posts = this.postService.getPosts();
     this.isloading = true;
     this.postService.getPosts(this.postsPerPage, this.currentPage);
+    this.userId = this.authService.getUserId();
     this.postSub = this.postService.getPostUpdated()
     .subscribe((postData: {posts: Post[], postCount: number}) => {
     this.isloading = false;
@@ -46,6 +48,7 @@ export class ListComponent implements OnInit, OnDestroy {
     this.authStatusSub = this.authService.getAuthStatus()
     .subscribe(isAuthenticated => {
       this.userIsAuth = isAuthenticated;
+      this.userId = this.authService.getUserId();
       }
     );
   }

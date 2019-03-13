@@ -35,18 +35,24 @@ router.post("/postdata",checkAuth, multer({storage: storage}).single('image'),(r
 
   const url = req.protocol + '://' + req.get('host');
   const post = new Post({
-    title: req.body.title, content: req.body.content, imagePath: url + "/images/" + req.file.filename
+    title: req.body.title,
+     content: req.body.content,
+      imagePath: url + "/images/" + req.file.filename,
+      creator: req.userData.userId
   })
-  post.save().then(createdPost => {
+
+    post.save().then(createdPost => {
 
   res.status(201).json({
     message: "Post added Successfully !!",
     // postId: createdPost.id
     post:{
+      //...createdPost,
       id:  createdPost.id,
       title: createdPost.title,
       content: createdPost.content,
-      imagePath: createdPost.imagePath
+      imagePath: createdPost.imagePath,
+      creator: createdPost.creator
     }
 
     });
@@ -61,7 +67,7 @@ router.post("/postdata",checkAuth, multer({storage: storage}).single('image'),(r
 router.get('/getpost',(req, res)=> {
    const pageSize = +req.query.pagesize;
   const currentPage = +req.query.page;
-  const postQuery = Post.find();
+  const postQuery = Post.find().sort({ _id: -1 });
   let fetchedPosts;
   if (pageSize && currentPage){
     postQuery
@@ -93,10 +99,16 @@ postQuery.then(documents => {
 
 router.delete('/deletepost/:id', checkAuth, (req, res) => {
 
-  Post.deleteOne({_id: req.params.id}).then(result => {
+  Post.deleteOne({_id: req.params.id, creator: req.userData.userId }).then(result => {
+
+    if(result.n > 0){
+      res.status(200).json({ message: "Post deleted! "});
+    } else {
+      res.status(401).json({ message: "Not Authorized"})
+    }
 
   })
-  res.status(200).json({message: "Post deleted! "});
+  //res.status(200).json({message: "Post deleted! "});
 });
 
 router.put('/updatepost/:id',checkAuth ,multer({storage: storage}).single('image'), (req, res)=>{
@@ -109,11 +121,17 @@ router.put('/updatepost/:id',checkAuth ,multer({storage: storage}).single('image
     _id: req.body.id,
     title: req.body.title,
     content: req.body.content,
-    imagePath: imagePath
+    imagePath: imagePath,
+    creator: req.userData.userId
   })
   console.log(post);
-  Post.updateOne({_id: req.params.id}, post).then(result =>{
+  Post.updateOne({_id: req.params.id, creator: req.userData.userId }, post).then(result =>{
 
+    if(result.nModified > 0){
+      res.status(200).json({ message: "Update Successful!!"});
+    } else {
+      res.status(401).json({ message: "Not Authorized"})
+    }
     res.status(200).json({message: "Update Successful !!"});
   })
 });

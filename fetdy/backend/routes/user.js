@@ -31,7 +31,7 @@ router.post('/signup', (req, res)=>{
 
 
 
-router.post('/login', (req, res) => {
+router.post('/login', (req, res, next) => {
 
   let fetchedUser;
 
@@ -39,7 +39,7 @@ router.post('/login', (req, res) => {
   .then(user => {
     if (!user) {
       return res.status(401).json({
-        message: "Auth Failed"
+        message: "Auth Failed not User"
       });
     }
     fetchedUser = user;
@@ -49,23 +49,24 @@ router.post('/login', (req, res) => {
     if (!result){
 
       return res.status(401).json({
-        message: "Auth Failed"
+        message: "Auth Failed not Password"
       });
     }
-      const token = jwt.sign({
+      const token = jwt.sign({        // JWTwebToken to encrypt tokens sent to the client
         email: fetchedUser.email, userId: fetchedUser._id },
          'secret_this_should_be_longer',
-         {expiresIn: '1h'});
+         {expiresIn: '1h'});  // suggest the duration of the active session
 
       res.status(200).json({
         token: token,
-        expiresIn: 3600
+        expiresIn: 3600,
+        userId: fetchedUser._id
       });
 
   }).catch(err => {
     console.log(err);
     return res.status(401).json({
-      message: "Auth Failed"
+      message: "Auth Failed alter Secret key"
     });
   })
 })

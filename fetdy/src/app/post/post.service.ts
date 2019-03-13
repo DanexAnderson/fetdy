@@ -20,7 +20,7 @@ export class PostService {
     // Spread array and find post where id = postId
    // return {...this.posts.find(post => post.id === id)};
    return this.http.get<{_id: string, title: string,
-     content: string, imagePath: string}>('http://localhost:3001/getpost/' + id);
+     content: string, imagePath: string, creator: string}>('http://localhost:3001/getpost/' + id);
   }
 
   updatePost(id: string, title: string , content: string, image: File | string | any) {
@@ -32,7 +32,7 @@ export class PostService {
       postData.append('content', content);
       postData.append('image', image, title);
     } else {
-        postData = { id: id, title: title, content: content, imagePath: image };
+        postData = { id: id, title: title, content: content, imagePath: image, creator: null };
     }
     // const post: Post = { id: id , title: title, content: content, imagePath: null };
     this.http.put<any>('http://localhost:3001/updatepost/' + id, postData)
@@ -59,11 +59,13 @@ export class PostService {
           title: post.title,
           content: post.content,
           id: post._id,
-          imagePath: post.imagePath
+          imagePath: post.imagePath,
+          creator: post.creator
         };
       }), maxPosts: postData.maxPosts};
     } ))
     .subscribe((transformPostData) => {
+      // console.log(transformPostData);
       this.posts = transformPostData.posts; // Add new post to the Post Array
       this.postUpdated.next({posts: [...this.posts], postCount: transformPostData.maxPosts}); // update the list of post array event
 

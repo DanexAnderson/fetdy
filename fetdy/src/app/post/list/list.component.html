@@ -19,7 +19,7 @@
 </mat-panel-description>
 </ng-template>
 
-<mat-action-row *ngIf='userIsAuth' class='py-0 pb-3 border-0'>
+<mat-action-row *ngIf='userIsAuth && userId == post.creator' class='py-0 pb-3 border-0'>
       <a mat-stroked-button color='primary' class='mr-2 ' [routerLink]="['/edit', post.id]"><b>Edit</b></a>
       <button mat-stroked-button color='warn' class='mr-1 ' (click)="onDelete(post.id)"><b>Delete</b></button>
     </mat-action-row>

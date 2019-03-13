@@ -42,7 +42,7 @@ export class CreateComponent implements OnInit {
     this.enterContent = this.form.value.content;
     this.enterTitle = this.form.value.title;
      const post: Post = { id: null, title: this.enterTitle,
-       content: this.enterContent, imagePath: null }  ;
+       content: this.enterContent, imagePath: null, creator: null }  ;
     // this.postCreate.emit(post);
     if (this.mode === 'create') {
       this.postService.addPost(
@@ -94,7 +94,9 @@ export class CreateComponent implements OnInit {
             id: postData._id,
              title: postData.title,
              content: postData.content,
-              imagePath: postData.imagePath };
+              imagePath: postData.imagePath,
+              creator: postData.creator
+             };
 
           this.form.setValue({
           'title': this.post.title,
