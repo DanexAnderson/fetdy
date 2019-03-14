@@ -1,9 +1,11 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, OnDestroy } from '@angular/core';
 import { Post } from '../post.model';
 import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 import { PostService } from '../post.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { mimeType } from './mine-type.validator';
+import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/auth/auth.service';
 
 
 @Component({
@@ -11,7 +13,7 @@ import { mimeType } from './mine-type.validator';
   templateUrl: './create.component.html',
   styleUrls: ['./create.component.css']
 })
-export class CreateComponent implements OnInit {
+export class CreateComponent implements OnInit, OnDestroy {
 
 
   enterTitle = '';
@@ -23,10 +25,12 @@ export class CreateComponent implements OnInit {
   isloading = false;
   form: FormGroup;
   imagePrev: any;
+  private authStatusSubs: Subscription;
 
    // @Output() postCreate = new EventEmitter<Post>();
 
-  constructor(public postService: PostService, public route: ActivatedRoute) { }
+  constructor(public postService: PostService,
+     public route: ActivatedRoute, private authService: AuthService) { }
 
  /*  onPost(postInput: HTMLTextAreaElement) {
     this.enterContent = postInput.value;
@@ -75,6 +79,11 @@ export class CreateComponent implements OnInit {
 
 
   ngOnInit() {
+
+    this.authStatusSubs = this.authService.getAuthStatus().subscribe(
+      authStatus => {
+        this.isloading = false;
+      });
     this.form = new FormGroup({
       'title': new FormControl
       (null, {validators: [Validators.required, Validators.minLength(2)], updateOn: 'blur'}),
@@ -105,6 +114,10 @@ export class CreateComponent implements OnInit {
         });
       } else {this.mode = 'create'; this.postId = null; }
     });
+  }
+
+  ngOnDestroy() {
+    this.authStatusSubs.unsubscribe();
   }
 
 }

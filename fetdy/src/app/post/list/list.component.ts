@@ -58,7 +58,7 @@ export class ListComponent implements OnInit, OnDestroy {
     this.postService.deletePost(postId)
     .subscribe(() => {
       this.postService.getPosts(this.postsPerPage, this.currentPage);
-    });
+    }, () => {this.isloading = false; });
   }
 
 ngOnDestroy() {

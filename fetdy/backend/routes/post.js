@@ -56,10 +56,12 @@ router.post("/postdata",checkAuth, multer({storage: storage}).single('image'),(r
     }
 
     });
+  }).catch(error => {
+    res.status(500).json({        // 500 => something went wrong on Server
+      message: "Creating a post Failed"
+    });
   });
-  // const post = req.body;
-  // console.log(post);
-  // res.status(201).json({message: "Post added Successfully !!"});
+
 });
 
 //--------------------- get all posts -------//
@@ -84,16 +86,12 @@ postQuery.then(documents => {
       maxPosts: count
 
     });
+}).catch(error =>{
+  res.status(500).json({
+    message: "Fetching Post Failed"
+  })
 })
-/*   const posts = [{
-    id: 1, title: "First Server Post",
-    content: "This content is coming from the server"
-},
-{
-  id: 2, title: "Second Server Post",
-  content: "This Second content is also coming from server"
-}
-]; */
+
 
 });
 
@@ -107,6 +105,10 @@ router.delete('/deletepost/:id', checkAuth, (req, res) => {
       res.status(401).json({ message: "Not Authorized"})
     }
 
+  }).catch(error =>{
+    res.status(500).json({
+      message: "Failed to Delete"
+    })
   })
   //res.status(200).json({message: "Post deleted! "});
 });
@@ -133,6 +135,10 @@ router.put('/updatepost/:id',checkAuth ,multer({storage: storage}).single('image
       res.status(401).json({ message: "Not Authorized"})
     }
     res.status(200).json({message: "Update Successful !!"});
+  }).catch(error => {
+    res.status(500).json({
+      message: "Could not Update Post "
+    });
   })
 });
 
@@ -143,6 +149,10 @@ router.get('/getpost/:id', (req, res) => {
     }else{
       res.status(404).json({message: "Post not Found !!"});
     }
+  }).catch(error =>{
+    res.status(500).json({
+      message: "Fetching request Post Failed"
+    })
   })
 });
 

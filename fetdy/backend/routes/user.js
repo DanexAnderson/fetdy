@@ -21,7 +21,7 @@ router.post('/signup', (req, res)=>{
       });
     }).catch(err => {
       res.status(500).json({
-        error: err
+        message: "Invalid Email Authentication Credentials"  // Response Error Message for error-interceptor
       });
     });
   });
@@ -66,7 +66,7 @@ router.post('/login', (req, res, next) => {
   }).catch(err => {
     console.log(err);
     return res.status(401).json({
-      message: "Auth Failed alter Secret key"
+      message: "Authentication Failed. Altered Credentials"
     });
   })
 })

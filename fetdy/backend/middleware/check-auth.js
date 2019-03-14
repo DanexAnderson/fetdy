@@ -7,7 +7,7 @@ module.exports = (req, res, next) => {
   req.userData = { email: decodedToken.email, userId: decodedToken.userId };
   next(); // continue Authentication if header token and Server token matches
   } catch(error){
-    res.status(401).json({ message: "Auth Failed Check-Auth File"});
+    res.status(401).json({ message: "Auth user Invalid"});
   }
 
 };

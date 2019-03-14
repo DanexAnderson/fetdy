@@ -28,13 +28,21 @@ export class AuthService {
   getAuthStatus() {
     return this.authStatusLister.asObservable();
   }
-  createUser(email: string, password: string) {
+
+  createUser(email: string, password: string) {       // SignUp Component
     const authData: AuthData = {email: email, password: password};
-    this.http.post('http://localhost:3001/signup', authData)
-    .subscribe(response => {
-      console.log(response);
-    });
+    return this.http.post('http://localhost:3001/signup', authData)
+    .subscribe(() => {
+
+      this.router.navigate(['/']);
+    }, error => {
+      console.log(error);
+      this.authStatusLister.next(false);
+    }
+
+    );
   }
+
 
   logOut() {
     this.token = null;
@@ -71,6 +79,8 @@ export class AuthService {
 
       }
 
+    }, error => {
+      this.authStatusLister.next(false);
     });
   }
 
