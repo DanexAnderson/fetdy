@@ -6,6 +6,9 @@ import { map } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
 
+import { environment } from '../../environments/environment';
+const BACKEND_URL = environment.url;
+
 @Injectable({
   providedIn: 'root'
 })
@@ -20,7 +23,7 @@ export class PostService {
     // Spread array and find post where id = postId
    // return {...this.posts.find(post => post.id === id)};
    return this.http.get<{_id: string, title: string,
-     content: string, imagePath: string, creator: string}>('http://localhost:3001/getpost/' + id);
+     content: string, imagePath: string, creator: string}>(BACKEND_URL + 'getpost/' + id);
   }
 
   updatePost(id: string, title: string , content: string, image: File | string | any) {
@@ -35,7 +38,7 @@ export class PostService {
         postData = { id: id, title: title, content: content, imagePath: image, creator: null };
     }
     // const post: Post = { id: id , title: title, content: content, imagePath: null };
-    this.http.put<any>('http://localhost:3001/updatepost/' + id, postData)
+    this.http.put<any>(BACKEND_URL + 'updatepost/' + id, postData)
     .subscribe((response) => {
     /* const updatedPost = [...this.posts];
     const oldPostIndex = updatedPost.findIndex( p => p.id === id);
@@ -50,7 +53,7 @@ export class PostService {
   getPosts(postsPerPage: number, currentPage: number) {
 
     const queryParams = `?pagesize=${postsPerPage}&page=${currentPage}`;
-    this.http.get<{message: string, posts: any, maxPosts: number}>('http://localhost:3001/getpost' + queryParams)
+    this.http.get<{message: string, posts: any, maxPosts: number}>(BACKEND_URL + 'getpost' + queryParams)
     // pipe response to an operator that changes the response features,
     // use Map to add UnderScore to ID variable
     .pipe(map((postData) => {
@@ -85,7 +88,7 @@ export class PostService {
 
     // const post: Post = { id: null, title: title, content: content};
                     // Post Response with Mongoose ID
-    this.http.post<{message: string, post: Post}>('http://localhost:3001/postData', postData)
+    this.http.post<{message: string, post: Post}>(BACKEND_URL + 'postData', postData)
     .subscribe((responseData) => {
      /*  const post: Post = { id: responseData.post.id, title: title,
          content: content, imagePath: responseData.post.imagePath};
@@ -106,7 +109,7 @@ export class PostService {
   }
 
   deletePost(postId: string) {
-    return this.http.delete('http://localhost:3001/deletepost/' + postId);
+    return this.http.delete(BACKEND_URL + 'deletepost/' + postId);
   /*   .subscribe(() => {
       // Remove Deleted Post from the Post event Array Dynamically in the browser
       const updatedPost = this.posts.filter(post => post.id !== postId);

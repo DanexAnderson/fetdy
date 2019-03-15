@@ -47,7 +47,7 @@
               color ='primary'  routerLinkActive="text-warning shadow-none border-bottom"><b> List Post </b></a>
             </li>
             <li class="nav-item">
-                <a mat-button routerLink='/login' (click)="isNavbarCollapsed = !isNavbarCollapsed"
+                <a mat-button routerLink='' (click)="isNavbarCollapsed = !isNavbarCollapsed"
                 class="nav-link shadow py-2 py-lg-0 pr-lg-2 pl-lg-2 pr-5 pl-5 ml-2"
                 color ='primary'  routerLinkActive="text-warning shadow-none border-bottom"><b> Soon </b></a>
             </li>
@@ -87,14 +87,14 @@
                 </div>
             </li>
             <li class="nav-item" *ngIf="route !='/login'">
-                <a class="nav-link" [routerLink]="userIsAuth ? ['/'] : ['/login']"
+                <a class="nav-link" [routerLink]="userIsAuth ? ['/'] : ['./auth/login']"
                   (click)="isNavbarCollapsed = !isNavbarCollapsed">
                   <mat-icon class='shadow-sm rounded bg-transparent mr-2 '>account_circle</mat-icon>
                   <span *ngIf='!userIsAuth'>Login</span></a>
             </li>
             <li *ngIf="!userIsAuth && route =='/login'" class="nav-item">
                 <a class="nav-link " (click)="isNavbarCollapsed = !isNavbarCollapsed"
-                 routerLink="/signup" >Signup</a>
+                 routerLink="./auth/signup" >Signup</a>
             </li>
 
             <li *ngIf='userIsAuth' class="nav-item">
