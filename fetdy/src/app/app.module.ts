@@ -11,16 +11,15 @@ import { ErrorInterceptor } from './error-interceptor';
 import { ErrorComponent } from './error/error.component';
 import { AngularMaterialModule } from './angular-material.module';
 import { PostsModule } from './post/post.module';
-// import { AuthModule } from './auth/auth.module'; for lazy loading
-
+import { StopTrainingComponent } from './training/current-training/stop-training.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-
     HeaderComponent,
-    ErrorComponent
+    ErrorComponent,
+    StopTrainingComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,13 +29,12 @@ import { PostsModule } from './post/post.module';
     NgbModule,
     BrowserAnimationsModule,
     PostsModule,
-    // AuthModule
 
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
               {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
              ],
   bootstrap: [AppComponent],
-  entryComponents: [ErrorComponent]
+  entryComponents: [ErrorComponent, StopTrainingComponent]
 })
 export class AppModule { }

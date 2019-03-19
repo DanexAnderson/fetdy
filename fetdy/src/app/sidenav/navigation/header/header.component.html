@@ -1,0 +1,13 @@
+<mat-toolbar color='primary' class='navbar position-fixed '>
+
+    <div class="d-lg-non"><button  mat-icon-button (click)='onToggleSidenav()'
+      class="nav-item"><mat-icon>menu</mat-icon></button></div>
+    <button mat-button class="navbar-brand" routerLink='/fitness/fitness'>LOGO</button>
+
+     <!--  <a class="nav-item text-white" routerLink='/auth/signup'>Signup</a>
+      <a class="nav-item text-white" routerLink='/auth/login'>Login</a> -->
+      <button mat-button class="nav-item text-white mr-5" routerLink='/fitness/training'>
+        <mat-icon class="d-inline-block mr-2">fitness_center</mat-icon>
+        <span class='navbar-brand'> Training</span></button>
+
+  </mat-toolbar>

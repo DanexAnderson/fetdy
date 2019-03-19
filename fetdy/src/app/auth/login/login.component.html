@@ -4,7 +4,7 @@
 <h2 class='text-primary text-center mb-4'>Login</h2>
 
     <form (submit) = "onLogin(loginForm)" *ngIf='!isloading' #loginForm='ngForm'>
-  <mat-card class='border border-secondary col-12 col-lg-8 container-fluid shadow-sm'>
+  <mat-card class='border col-12 col-lg-8 container-fluid shadow'>
 
       <mat-form-field class='w-100'>
         <input matInput  placeholder="Email" name='email' ngModel

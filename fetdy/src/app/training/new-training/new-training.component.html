@@ -1,0 +1,31 @@
+<div class="container-fluid mt-3 ">
+<mat-card class="shadow rounded border">
+    <mat-card-header >
+        <mat-card-title class="text-success">Exercise Class</mat-card-title>
+        <mat-card-subtitle>Lets Start a Work-Out</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content class="container ml-5 ">
+    <!-- <img matCardImage src="Card wide image source"> -->
+    <br>
+    <mat-form-field >
+        <mat-label>Exercises</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let exer of exercises" [value]="exer.value">
+
+            {{exer.viewValue}}
+
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-card-content>
+
+    <mat-card-actions align="center">
+        <button mat-stroked-button color='primary' (click)="onStartTraining()">Start</button>
+
+    </mat-card-actions>
+    <mat-card-footer>
+
+    </mat-card-footer>
+</mat-card>
+</div>

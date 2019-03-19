@@ -1,36 +1,69 @@
-<br>
+
 <div class='container mt-5'>
 
 <h2 class='text-primary text-center mb-4'>Sign-Up</h2>
 
     <form (submit) = "onSignup(signupForm)" *ngIf='!isloading' #signupForm='ngForm'>
 
-  <mat-card class='border border-secondary col-12 col-lg-8 container-fluid shadow-sm'>
+  <mat-card class='border col-12 col-lg-8 container-fluid shadow'>
 
       <mat-form-field class='w-100'>
+
+          <input matInput  placeholder="First Name" name='firstname' ngModel
+          type='text'class='bg-light p-2' #fnameInput="ngModel" required>
+          <mat-error *ngIf="fnameInput.invalid && [valid]==1">Please enter your first name</mat-error>
+
+      </mat-form-field>
+
+      <mat-form-field class='w-100'>
+
+          <input matInput  placeholder="Last Name" name='lastname' ngModel
+          type='text'class='bg-light p-2' #lnameInput="ngModel" required>
+          <mat-error *ngIf="lnameInput.invalid && [valid]==1">Please enter your last name</mat-error>
+
+      </mat-form-field>
+
+    <mat-form-field class='w-100'>
+
         <input matInput  placeholder="Email" name='email' ngModel
         type='email'class='bg-light p-2' #emailInput="ngModel" required email>
-        <mat-error *ngIf="emailInput.invalid && [valid]==1">Please Enter Valid Email</mat-error>
-      </mat-form-field>
+        <mat-error *ngIf="emailInput.invalid && [valid]==1">Please Enter a Valid Email</mat-error>
+
+    </mat-form-field>
 <br><br>
 
-<mat-form-field class='w-100'>
+  <mat-form-field class='w-100' hintLabel = "Should be at Least 6 characters Long">
 
     <input matInput type='password' ngModel name='password' required
      placeholder="Password" class='bg-light p-2 ' #passwordInput ="ngModel"
-       />
+      #pwInput='ngModel' minlength="6" />
+       <mat-hint align ='end'>{{ pwInput.value?.length}} of 6</mat-hint>
       <mat-error *ngIf="passwordInput.invalid && [valid]==1">Please Enter a Valid Password</mat-error>
+  </mat-form-field>
+<br><br>
+  <p>
+    <mat-form-field class='w-50 border-top border-bottom pt-1 pb-3'>
+      <input matInput [matDatepicker]="picker" placeholder="Your Birthday"  disabled
+      [max]="maxDate" ngModel name="birthday" required>
+      <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
+      <mat-datepicker #picker disabled="false" color="accent"></mat-datepicker>
+      <mat-hint> You must be 18+ to Signup</mat-hint>
     </mat-form-field>
+</p>
+
+<p class="container mt-5 mb-5">
+  <mat-checkbox  color="primary"  ngModel name='agree' #checkbox='ngModel' required>
+   <span class='text-wrap text-justify'> I Agree to All Terms and Conditions for Signing up </span></mat-checkbox>
+  </p>
 
 
-  <button *ngIf='!isloading' class='mt-3 pl-2 pr-2' mat-raised-button color='accent' type='submit'>Signup</button>
-    </mat-card>
+  <button *ngIf='!isloading' [disabled] ="signupForm.invalid" class='mt-3 pl-2 pr-2 mt-2' mat-raised-button color='accent' type='submit'>Signup</button>
+
+</mat-card>
 
     <mat-spinner *ngIf='isloading'></mat-spinner>
 
 </form>
 <br><br>
-
-<div *ngIf=''></div>
 
 </div>

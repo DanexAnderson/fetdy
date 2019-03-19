@@ -10,7 +10,8 @@ Lazy Loading and preloading, PWA setup.
      providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}]
 5) Add auth.guard.ts file to app-routing.module => providers: [AuthGuard]
     { path: 'create', component: CreateComponent, canActivate: [AuthGuard] }
-6)
+6) Run npm install --save bcryptjs  => at deployment
+7) Fix Error more than one Module => --module app.module
 
 
 

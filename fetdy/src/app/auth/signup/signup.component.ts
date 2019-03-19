@@ -13,6 +13,7 @@ export class SignupComponent implements OnInit, OnDestroy {
   isloading = false;
   valid = 0;
   private authStatusSubs: Subscription;
+  maxDate: any;
 
   constructor(public authService: AuthService) { }
 
@@ -25,8 +26,9 @@ export class SignupComponent implements OnInit, OnDestroy {
     this.authService.createUser(form.value.email, form.value.password);
   }
 
-
   ngOnInit() {
+    this.maxDate = new Date();
+    this.maxDate.setFullYear(this.maxDate.getFullYear() - 18);
     this.authStatusSubs = this.authService.getAuthStatus().subscribe(
       authStatus => {
         this.isloading = false;

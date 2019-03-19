@@ -1,0 +1,29 @@
+<p class='col-12 w-100  py-3'>
+
+    <mat-nav-list>
+
+    <span mat-list-item class="py-2 mb-5" (click)='onClose()'
+    routerLinkActive="active" routerLink='/fitness/fitness'>LOGO</span>
+
+    <a mat-list-item class="d-inline-block mt-3" (click)='onClose()' routerLink='/auth/signup'>
+      <span class="d-inline-block">Signup</span>
+    <mat-icon class="d-inline-block ml-2">face</mat-icon></a>
+
+    <a mat-list-item class=""  (click)='onClose()' routerLink='/auth/login'>
+      <span class="d-inline-block">Login</span>
+    <mat-icon class="d-inline-block ml-2">input</mat-icon></a>
+
+
+    <a mat-list-item class=" mr-5" (click)='onClose()' routerLink='/fitness/training'>
+      <span class="d-inline-block">Training</span>
+      <mat-icon class="d-inline-block ml-2">fitness_center</mat-icon></a>
+
+
+    <a mat-list-item class="" (click)='onClose()' routerLink=''>
+        <span class="d-inline-block">Logout</span>
+      <mat-icon class="d-inline-block ml-2"></mat-icon></a>
+
+
+    </mat-nav-list>
+
+  </p>

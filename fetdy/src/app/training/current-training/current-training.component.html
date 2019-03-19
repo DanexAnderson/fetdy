@@ -1,0 +1,21 @@
+
+<section class=' mt-4 container-fluid '>
+  <mat-card class='shadow'>
+    <h1 class='ml-5 pb-2'> Progress </h1>
+<div class='d-flex justify-content-center '>
+  <mat-progress-spinner mode="determinate" [value]="progress"
+   [diameter]='250' [strokeWidth]='15' color={{progressColor}}>
+  </mat-progress-spinner><br><h1 class='position-absolute mt-5 pt-5 text-primary'>{{progress}}% </h1>
+</div>
+<br>
+
+  <h3 [ngClass]="{ 'text-primary': progress >= 25 && progress <= 50,
+                  'text-warning': progress >= 50 && progress <= 75,
+                  'text-danger': progress >= 75 && progress < 100,
+                  'text-success': progress == 100
+  }">{{progressMessage}}</h3>
+<br>
+  <button mat-raised-button color="accent" (click) ='onStop()'> Stop</button>
+</mat-card>
+</section>
+

@@ -10,7 +10,10 @@ const routes: Routes = [
   { path: 'create', component: CreateComponent, canActivate: [AuthGuard] },
   { path: 'list', component: ListComponent },
   { path: 'edit/:postId', component: CreateComponent, canActivate: [AuthGuard] },
-  { path: 'auth', loadChildren: './auth/auth.module#AuthModule'}
+  { path: 'auth', loadChildren: './auth/auth.module#AuthModule'},
+  { path: 'fitness', loadChildren: './sidenav/sidenav-routing.module#SidenavRoutingModule'},
+
+
 
 ];
 
