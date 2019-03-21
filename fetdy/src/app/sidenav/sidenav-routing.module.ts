@@ -10,6 +10,7 @@ import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.com
 import { CurrentTrainingComponent } from '../training/current-training/current-training.component';
 import { NewTrainingComponent } from '../training/new-training/new-training.component';
 import { PastTrainingComponent } from '../training/past-training/past-training.component';
+import { FormsModule } from '@angular/forms';
 
 
 const routes: Routes = [
@@ -35,7 +36,7 @@ const routes: Routes = [
     PastTrainingComponent,
   ],
   imports: [
-    CommonModule,
+    CommonModule, FormsModule,
     AngularMaterialModule,
     RouterModule.forChild(routes)
   ],

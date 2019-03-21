@@ -1,28 +1,6 @@
 <mat-toolbar color = "">
 
 
-<!-- <nav>
- <ul class='nav '>
-
- <li class='nav-item'>
-   <a routerLink='/' mat-button class="nav-link shadowW" routerLinkActive="mat-warn"><b> New Post </b></a>
-  </li>
-
-  <li class='nav-item '>
-    <a mat-button routerLink='/list' class="nav-link shadowB"
-    routerLinkActive="mat-accent"><b>List Post</b></a>
-  </li>
-
- </ul>
-
- <ul class='navbar-nav mr-auto'>
-    <li class='nav-item  mr-auto'>
-      <a mat-button routerLink='/list' class="nav-link shadowB"
-      routerLinkActive="mat-accent"><b>List Post</b></a>
-    </li>
-</ul>
-</nav> -->
-
 <nav class="navbar navbar-expand-lg  fixed-top">
     <a class="navbar-brand ml-5" routerLink="">Angular</a>
 
@@ -48,35 +26,14 @@
               color ='primary'  routerLinkActive="text-warning shadow-none border-bottom"><b> List Post </b></a>
             </li>
             <li class="nav-item">
-                <a mat-button routerLink='' (click)="isNavbarCollapsed = true"
+                <a mat-button routerLink='/fitness/fitness' (click)="isNavbarCollapsed = true"
                 class="nav-link shadow py-2 py-lg-0 pr-lg-2 pl-lg-2 pr-5 pl-5 ml-2"
-                color ='primary'  routerLinkActive="text-warning shadow-none border-bottom"><b> Soon </b></a>
+                color ='primary'  routerLinkActive="text-warning shadow-none border-bottom"><b> Fitness </b></a>
             </li>
 
         </ul>
         <ul class="navbar-nav mr-5">
-    <!--       <li>
 
-              <button mat-icon-button [matMenuTriggerFor]="menu">
-                  <mat-icon>more_vert</mat-icon>
-                </button>
-                <mat-menu #menu="matMenu" xPosition="before" yPosition="above" [overlapTrigger]="false">
-                  <button mat-menu-item>
-                    <mat-icon>dialpad</mat-icon>
-                    <span>Redial</span>
-                  </button>
-                  <button mat-menu-item disabled>
-                    <mat-icon>voicemail</mat-icon>
-                    <span>Check voicemail</span>
-                  </button>
-                  <button mat-menu-item>
-                    <mat-icon>notifications_off</mat-icon>
-                    <span>Disable alerts</span>
-                  </button>
-                </mat-menu>
-
-          </li>
- -->
             <li class="nav-item dropdown mr-5" ngbDropdown>
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink"
                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ngbDropdownToggle>
@@ -91,7 +48,9 @@
                 <a class="nav-link " [routerLink]="userIsAuth ? ['/'] : ['./auth/login']"
                   (click)="isNavbarCollapsed = true">
                   <mat-icon class='shadow-sm rounded bg-transparent mr-2 '>account_circle</mat-icon>
-                  <span *ngIf='!userIsAuth' class="">Login</span></a>
+                  <span *ngIf='!userIsAuth' class="">Login</span>
+                  <span *ngIf='userIsAuth' class="">{{firstname+' '+lastname}}</span>
+                </a>
             </li>
             <li *ngIf="!userIsAuth && route =='/auth/login'" class="nav-item">
                 <a class="nav-link " (click)="isNavbarCollapsed = true"

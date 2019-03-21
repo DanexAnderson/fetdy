@@ -17,7 +17,7 @@ constructor (private authService: AuthService, private router: Router) {}
   const isAuth = this.authService.getIsAuth();
   if (!isAuth) {
 
-      this.router.navigate(['/login']);
+      this.router.navigate(['/auth/login']);
   }
   return isAuth;
 
@@ -26,3 +26,4 @@ constructor (private authService: AuthService, private router: Router) {}
 }
 
 // Protects Against HTML injections...
+// Routes Protections

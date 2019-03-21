@@ -8,6 +8,9 @@ exports.createUser = (req, res)=>{
   bcrypt.hash(req.body.password, 10).then(hash =>{
 
     const user = new User({
+    firstname: req.body.firstname,
+    lastname: req.body.lastname,
+    birthday: req.body.birthday,
     email: req.body.email,
     password: hash
   });
@@ -34,7 +37,7 @@ exports.userLogin = (req, res, next) => {
   .then(user => {
     if (!user) {
       return res.status(401).json({
-        message: "Auth Failed not User"
+        message: "Authentication failed, invalid user"
       });
     }
     fetchedUser = user;
@@ -55,7 +58,9 @@ exports.userLogin = (req, res, next) => {
       res.status(200).json({
         token: token,
         expiresIn: 3600,
-        userId: fetchedUser._id
+        userId: fetchedUser._id,
+        names: { firstname: fetchedUser.firstname,
+          lastname: fetchedUser.lastname, birthday: fetchedUser.birthday }
       });
 
   }).catch(err => {

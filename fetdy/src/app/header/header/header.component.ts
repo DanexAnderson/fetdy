@@ -12,8 +12,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   isNavbarCollapsed = true;
   private authListenerSubs: Subscription;
+  private nameListnerSubs: Subscription;
   userIsAuth = false;
   route = '';
+  firstname = '';
+  lastname = '';
 
   constructor(private authService: AuthService, private router: Router) {
 
@@ -21,7 +24,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
    }
 
    onLogout() {
-    this.isNavbarCollapsed = !this.isNavbarCollapsed;
+    this.isNavbarCollapsed = true;
     this.authService.logOut();
    }
   ngOnInit() {
@@ -30,13 +33,20 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.authListenerSubs = this.authService.getAuthStatus()
     .subscribe(isAuthenticated => {
       this.userIsAuth = isAuthenticated;
-
-
     });
+
+    if (true) {
+
+       this.firstname = this.authService.getNames();
+        this.nameListnerSubs = this.authService.getNamesSubs().subscribe(names => {
+        this.firstname = names;
+      });
+
+    }
   }
 
   ngOnDestroy() {
-
+    this.authListenerSubs.unsubscribe();
   }
 
 }
