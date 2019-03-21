@@ -37,7 +37,7 @@ export class CurrentTrainingComponent implements OnInit {
 
     const step = this.trainingService.getRunningExercise().duration / 100 * 1000 ;
     this.timer = setInterval(() => {
-      this.progress = this.progress + 5;
+      this.progress = this.progress < 100 ? this.progress + 5 : this.progress;
       switch (this.progress) {
        case 25 :  this.progressMessage = ' keep going, You are Doing it !! '; break;
        case 50 :  this.progressMessage = ' You\'re Half way There, You got this !!'; break;
@@ -49,8 +49,13 @@ export class CurrentTrainingComponent implements OnInit {
       }
       if (this.progress >= 100) {
 
-        this.trainingService.completeExercise();
         clearInterval(this.timer);
+
+        setTimeout(() => {
+          this.trainingService.completeExercise();
+
+        }, 2000);
+
       }
      }, step);
 

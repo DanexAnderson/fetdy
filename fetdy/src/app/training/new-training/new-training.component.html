@@ -1,8 +1,10 @@
-<div class="container-fluid mt-3 ">
+<div class="container-fluid mt-3 overflow-hidden">
   <form (ngSubmit)="onStartTraining(f)" #f="ngForm">
 <mat-card class="shadow rounded border">
     <mat-card-header >
-        <mat-card-title class="text-success">Exercise Class</mat-card-title>
+        <mat-card-title class="text-success">Exercise Class
+          <span class="ml-5 ">Select Your Work-Out</span>
+        </mat-card-title>
         <mat-card-subtitle>Lets Start a Work-Out</mat-card-subtitle>
     </mat-card-header>
 
@@ -22,7 +24,7 @@
     </mat-card-content>
 
     <mat-card-actions align="center">
-        <button type="submit" mat-stroked-button color='primary' [disabled]="f.invalid">Start</button>
+        <button type="submit" mat-raised-button color='primary' [disabled]="f.invalid">Start</button>
 
     </mat-card-actions>
     <mat-card-footer>

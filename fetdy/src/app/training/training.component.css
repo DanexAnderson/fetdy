@@ -1,0 +1,20 @@
+mat-tab-group, mat-tab {
+  z-index: 1 !important;
+
+}
+
+.backg  {
+   background-image: url("/assets/images/gymworkout.jpg");
+   background-size: 100% 100%;
+  height: 80vh;
+  border-radius: 7px;
+  border: 2px solid white;
+
+
+}
+
+
+#ops {
+  opacity: 1.0 !important;
+  color: white !important;
+}

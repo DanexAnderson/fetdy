@@ -12,6 +12,7 @@ import { ErrorComponent } from './error/error.component';
 import { AngularMaterialModule } from './angular-material.module';
 import { PostsModule } from './post/post.module';
 import { StopTrainingComponent } from './training/current-training/stop-training.component';
+import { AngularSvgIconModule } from 'angular-svg-icon';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { StopTrainingComponent } from './training/current-training/stop-training
     NgbModule,
     BrowserAnimationsModule,
     PostsModule,
+    AngularSvgIconModule,
 
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
