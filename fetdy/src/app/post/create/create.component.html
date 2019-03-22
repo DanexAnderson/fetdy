@@ -1,14 +1,14 @@
 <br>
-<div class='container mt-5'>
+<div class='container mt-5 col-lg-8'>
 
 <mat-spinner *ngIf='isloading'></mat-spinner>
 
 <!-- //*** FormsModule *** <form (submit)="onPost(postForm)" *ngIf='!isloading' #postForm='ngForm'> -->
     <form [formGroup]="form" (submit)="onPost()" *ngIf='!isloading' >
-  <mat-card >
+  <mat-card class="border shadow-lg">
 
 
-      <label>Title</label><br>
+      <label class="text-primary"><h5>Share Your Health & Fitness Adventures</h5></label><br><br>
 
       <mat-form-field class='w-100'>
         <input matInput  placeholder="Title" formControlName='title' class='bg-light p-3 shadow-sm'>

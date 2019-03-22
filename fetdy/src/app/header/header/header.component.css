@@ -1,11 +1,35 @@
-nav{
-  background: rgba(255, 255, 255, 0.85);
+.nav1{
+  height: 8vh;
+  z-index: 2;
 }
 
 .dropNavBG {
 
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.9);
   border: 1px solid rgba(0, 0, 255, 0.2);
   border-radius: 10px;
 
+}
+
+.logo {
+
+  width: 45px;
+  height: 40px;
+
+
+}
+
+ .zindex {
+  height: 7.5%;
+  z-index: -1;
+  background-image: url("/assets/headerbg.JPG");
+  background-repeat: repeat;
+  background-size: 100% 100%;
+  background-color: white;
+
+
+}
+
+.bgNav {
+   background: rgba(255, 255, 255, 0.9);
 }

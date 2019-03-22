@@ -1,5 +1,6 @@
 mat-toolbar {
   z-index: 1000 !important;
+  clear: both;
 }
 
 .hite {
