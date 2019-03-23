@@ -1,7 +1,7 @@
-mat-tab-group, mat-tab {
- /*  z-index: 0 !important; */
+/* mat-tab-group, mat-tab {
+  z-index: 0 !important;
 
-}
+} */
 
 .backg  {
    background-image: url("/assets/images/gymworkout.jpg");
@@ -17,4 +17,9 @@ mat-tab-group, mat-tab {
 #ops {
   opacity: 1.0 !important;
   color: white !important;
+}
+
+.hite {
+  height: 67px;
+  background: rgba(42, 93, 231, 0.3);
 }
