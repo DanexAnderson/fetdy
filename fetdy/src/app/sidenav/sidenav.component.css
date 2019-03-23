@@ -1,5 +1,5 @@
 mat-sidenav-container, mat-sidenav-content, mat-sidenav {
-  height: 90vh;
+  /* height: 90vh; */
   background: rgb(243, 248, 255);
 }
 

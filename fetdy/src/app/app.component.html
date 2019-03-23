@@ -5,12 +5,12 @@
 <!-- <app-create (postCreate)='onPostAdd($event)'></app-create>
 <app-list [posts]="posts"></app-list> -->
 <main>
-<router-outlet></router-outlet>
+<router-outlet (activate)="onActivate($event)"></router-outlet>
 </main>
 
 
 <!-- Footer -->
-<footer  class="page-footer font-small bg-light">
+<footer  class="page-footer font-small bg-light mt-5">
 
     <div style="background-color: #6351ce;">
       <div class="container">

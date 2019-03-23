@@ -1,5 +1,5 @@
 mat-tab-group, mat-tab {
-  z-index: 0 !important;
+ /*  z-index: 0 !important; */
 
 }
 
@@ -9,7 +9,7 @@ mat-tab-group, mat-tab {
   height: 80vh;
   border-radius: 7px;
   border: 2px solid white;
-  z-index: 0 !important;
+  /* z-index: 0 !important; */
 
 }
 

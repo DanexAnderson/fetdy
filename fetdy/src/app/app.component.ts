@@ -17,6 +17,13 @@ export class AppComponent implements OnInit {
     router.events.subscribe((url: any) => this.route = router.url.includes('/fitness') );
   }
 
+  onActivate(event: Event) {
+    window.scroll(0, 0);
+    // or document.body.scrollTop = 0;
+    // or document.querySelector('body').scrollTo(0,0)
+
+}
+
  ngOnInit(): void {
 
     this.authService.autoAuthUser();

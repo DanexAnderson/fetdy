@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'list', component: ListComponent },
   { path: 'edit/:postId', component: CreateComponent, canActivate: [AuthGuard] },
   { path: 'auth', loadChildren: './auth/auth.module#AuthModule'},
-  { path: 'fitness', loadChildren: './sidenav/sidenav-routing.module#SidenavRoutingModule', canActivate: [AuthGuard] },
+  { path: 'fitness', loadChildren: './sidenav/sidenav-routing.module#SidenavRoutingModule' },
 
 
 

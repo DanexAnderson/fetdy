@@ -1,4 +1,7 @@
 const Post = require('../models/post');
+const fs = require('fs');
+const path = require('path');
+
 
 exports.createPost = (req,res,next) => {
 
@@ -62,17 +65,37 @@ postQuery.then(documents => {
 
 }
 
+
 exports.deletePost = (req, res) => {
+
+  let Path2 = '';
+
+  // Get ImageUrl
+  Post.findById(req.params.id).then(post => {
+   const url = req.protocol + '://' + req.get('host');
+   let Path = '..'+post.imagePath.split(url)[1];
+   Path = path.join(__dirname, Path);
+   Path2 = Path;
+
+  });
 
   Post.deleteOne({_id: req.params.id, creator: req.userData.userId }).then(result => {
 
     if(result.n > 0){
+
+      // Delete image
+      fs.unlink(Path2, (err) => {
+        if (err) throw err;
+        console.log('successfully deleted ' + Path2);
+      });
+
       res.status(200).json({ message: "Post deleted! "});
     } else {
       res.status(401).json({ message: "Not Authorized"})
     }
 
   }).catch(error =>{
+    console.log(error);
     res.status(500).json({
       message: "Failed to Delete"
     })

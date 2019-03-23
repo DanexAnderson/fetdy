@@ -3,7 +3,9 @@ import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Post } from '../post.model';
 import { PostService } from '../post.service';
 import { Subscription } from 'rxjs';
-import { PageEvent } from '@angular/material';
+import { PageEvent, MatDialog } from '@angular/material';
+import { StopTrainingComponent } from 'src/app/training/current-training/stop-training.component';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-list',
@@ -12,7 +14,8 @@ import { PageEvent } from '@angular/material';
 })
 export class ListComponent implements OnInit, OnDestroy {
 
-  constructor(public postService: PostService, private authService: AuthService) { }
+  constructor(private dialog: MatDialog, public postService: PostService,
+    public snackBar: MatSnackBar, private authService: AuthService) { }
 
  // @Input()
   posts: Post[] = [];
@@ -54,11 +57,32 @@ export class ListComponent implements OnInit, OnDestroy {
   }
 
   onDelete(postId: string) {
-    this.isloading = true;
+
+
+    const dialogRef = this.dialog.open(StopTrainingComponent,
+      {data: {deletePost: 'This post will be Deleted'}});
+
+  dialogRef.afterClosed().subscribe(result => {
+
+    if (result) {
+     // this.trainingExit.emit();
+      this.isloading = true;
+
     this.postService.deletePost(postId)
     .subscribe(() => {
       this.postService.getPosts(this.postsPerPage, this.currentPage);
+      this.snackBar.open('Post Deleted Successfully !!', 'OK', {
+        duration: 3000,
+      });
+
     }, () => {this.isloading = false; });
+
+    } else {
+       return;
+       }
+  });
+
+
   }
 
 ngOnDestroy() {

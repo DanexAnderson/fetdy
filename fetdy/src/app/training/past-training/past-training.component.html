@@ -1,9 +1,9 @@
-<div class='container-fluid mt-5 '>
+<div class='container-fluid mt-5 overflow-hidden'>
 <mat-form-field class='col-lg-4 col-8'>
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
 </mat-form-field>
 
-<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 ">
 
     <!-- Date Column -->
     <ng-container matColumnDef="date">
