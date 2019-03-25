@@ -13,6 +13,7 @@ import { AngularMaterialModule } from './angular-material.module';
 import { PostsModule } from './post/post.module';
 import { StopTrainingComponent } from './training/current-training/stop-training.component';
 import { AngularSvgIconModule } from 'angular-svg-icon';
+import { LandingPageComponent } from './dashboards/landing-page/landing-page.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
     HeaderComponent,
     ErrorComponent,
     StopTrainingComponent,
+    LandingPageComponent,
   ],
   imports: [
     BrowserModule,

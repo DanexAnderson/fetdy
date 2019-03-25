@@ -46,7 +46,7 @@ export class PostService {
     updatedPost[oldPostIndex] = post;
     this.posts = updatedPost;
     this.postUpdated.next([...this.posts]); */
-     this.router.navigate(['/list']);
+     this.router.navigate(['/home']);
   });
   }
 
@@ -98,7 +98,7 @@ export class PostService {
       this.posts.push(post);
       this.postUpdated.next([...this.posts]); // add new post to post event array
        */
-       this.router.navigate(['/list']);
+       this.router.navigate(['/home']);
      });
     // this.posts.push(post);
     // this.postUpdated.next([...this.posts]);

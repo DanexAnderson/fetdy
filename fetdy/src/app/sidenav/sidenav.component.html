@@ -1,4 +1,5 @@
 
+
 <div class=" mt-0 ">
 
 <mat-sidenav-container >
@@ -9,10 +10,10 @@
 
 
 <mat-sidenav-content >
-
 <app-header (sidenavToggle)="sidenav.toggle()"></app-header>
 
 <main class='mt-4 pt-4  container'>
+
 <router-outlet (activate)="onActivate($event)"></router-outlet>
 </main>
 </mat-sidenav-content>

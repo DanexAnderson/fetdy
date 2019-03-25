@@ -2,16 +2,16 @@
 
 
 
-<nav class="navbar navbar-expand-lg fixed-top nav1">
+<nav class="navbar navbar-expand-lg shadow-sm fixed-top nav1">
 
-    <a class="navbar-brand ml-5 mr-4 py-0" routerLink="/list">
-    <img src='assets/healthlogo1.png' class='logo py-0'/>
+    <a class="navbar-brand ml-lg-5 ml-3 mr-lg-5 mr-3 py-0" routerLink="/welcome">
+    <img src='assets/healthlogo1.png' class='logo py-0 mr-3'/>
     <span class="text-success"> Health </span> <i class="text-danger"> & </i> Fitness</a>
 
     <!---- Nav Transparent -->
-    <nav class="navbar fixed-top zindex py-0 ">
+    <!-- <nav class="navbar fixed-top zindex py-0 ">
       <div class='w-100 h-100 bgNav '></div>
-      </nav>
+      </nav> -->
 
     <button class="navbar-toggler hidden-sm-up" type="button"  type="button"
     (click)="isNavbarCollapsed = !isNavbarCollapsed" data-target="#navbarsDefault"
@@ -24,16 +24,20 @@
      [ngClass]="{'dropNavBG shadow-lg p-2':!isNavbarCollapsed, 'collapse navbar-collapse':true }">
 
         <ul class="navbar-nav mr-auto ">
+
+            <li class="nav-item" >
+                <a mat-button routerLink='/home' (click)="isNavbarCollapsed = true"
+                class="nav-link shadow py-2 py-lg-0 pr-lg-2 pl-lg-2 pr-5 pl-5 ml-2 border-top"
+              color ='primary'  routerLinkActive="text-warning shadow-none border-bottom">
+              <mat-icon>home</mat-icon> </a>
+            </li>
+
             <li *ngIf='userIsAuth' class="nav-item" >
                 <a routerLink='/create' mat-button (click)="isNavbarCollapsed = true"
                  class="nav-link shadow py-2 py-lg-0 pr-lg-2 pl-lg-2 pr-5 pl-5 ml-2 border-top"
                 color = 'primary' routerLinkActive="mat-warn shadow-none border-bottom"> New Post </a>
             </li>
-            <li class="nav-item" >
-                <a mat-button routerLink='/list' (click)="isNavbarCollapsed = true"
-                class="nav-link shadow py-2 py-lg-0 pr-lg-2 pl-lg-2 pr-5 pl-5 ml-2 border-top"
-              color ='primary'  routerLinkActive="text-warning shadow-none border-bottom"> List Post </a>
-            </li>
+
             <li class="nav-item">
                 <a mat-button routerLink='/fitness/' (click)="isNavbarCollapsed = true"
                 class="nav-link  shadow py-2 py-lg-0 pr-lg-2 pl-lg-2 pr-5 pl-5 ml-2 border-top"
@@ -49,12 +53,12 @@
 
                 </a>
                 <div class="dropdown-menu mr-5 border-0 shadow" aria-labelledby="navbarDropdownMenuLink" ngbDropdownMenu>
-                    <a class="dropdown-item mr-5" >Action</a>
-                    <a class="dropdown-item mr-5" >Another action</a>
+                    <a class="dropdown-item mr-5" >1</a>
+                    <a class="dropdown-item mr-5" >2</a>
                 </div>
             </li>
             <li class="nav-item " *ngIf="route !='/auth/login'">
-                <a class="nav-link " [routerLink]="userIsAuth ? ['/list'] : ['./auth/login']"
+                <a class="nav-link " [routerLink]="userIsAuth ? ['/home'] : ['./auth/login']"
                   (click)="isNavbarCollapsed = true">
 
 

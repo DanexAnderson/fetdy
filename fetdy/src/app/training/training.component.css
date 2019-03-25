@@ -9,15 +9,10 @@
   height: 80vh;
   border-radius: 7px;
   border: 2px solid white;
-  /* z-index: 0 !important; */
+
 
 }
 
-
-#ops {
-  opacity: 1.0 !important;
-  color: white !important;
-}
 
 .hite {
   height: 67px;
