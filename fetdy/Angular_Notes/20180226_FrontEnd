@@ -12,6 +12,4 @@ Lazy Loading and preloading, PWA setup.
     { path: 'create', component: CreateComponent, canActivate: [AuthGuard] }
 6) Run npm install --save bcryptjs  => at deployment
 7) Fix Error more than one Module => --module app.module
-
-
-
+8) for state managemen NgRX install => npm install --save @ngrx/store

@@ -1,11 +1,11 @@
 mat-sidenav-container, mat-sidenav-content, mat-sidenav {
   /* height: 90vh; */
-  background: rgb(243, 248, 255);
+   background: rgb(243, 248, 255);
 }
 
 mat-sidenav {
-  color: black;
-  background: rgba(255, 255, 255, 0.85);
+   color: black;
+   background: rgba(255, 255, 255, 0.85);
 
 }
 

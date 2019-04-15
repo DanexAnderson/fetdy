@@ -1,7 +1,7 @@
 .nav1{
-  height: 7vh;
+  /* height: 7vh; */
   z-index: 2;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.9);
   border-top: 1px solid rgba(0, 0, 255, 0.233);
   border-bottom: 1px solid rgba(0, 0, 255, 0.233);
 
@@ -22,19 +22,18 @@
 
 
 }
-/*
- .zindex {
-  height: 7.5%;
-  z-index: -1;
-  /* background-image: url("/assets/headerbg.JPG");
-  background-repeat: repeat;
-  background-size: 100% 100%;
-  background-color: rgba(255, 255, 255, 0.55);
 
+.menuOutline {
 
+  outline: none !important;
 }
 
-.bgNav {
-  /*  background: rgba(255, 255, 255, 0.9);
+.activedd:active {
+  background: white;
 }
- */
+
+#close {
+  font-size: 150%;
+  font-weight: bold;
+}
+

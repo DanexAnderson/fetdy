@@ -4,59 +4,80 @@
 
 <nav class="navbar navbar-expand-lg shadow-sm fixed-top nav1">
 
-    <a class="navbar-brand ml-lg-5 ml-3 mr-lg-5 mr-3 py-0" routerLink="/welcome">
-    <img src='assets/healthlogo1.png' class='logo py-0 mr-3'/>
-    <span class="text-success"> Health </span> <i class="text-danger"> & </i> Fitness</a>
+<!-- <div [ngClass]="{'mt-n2 pt-1':!isNavbarCollapsed }"> -->
 
-    <!---- Nav Transparent -->
-    <!-- <nav class="navbar fixed-top zindex py-0 ">
-      <div class='w-100 h-100 bgNav '></div>
-      </nav> -->
+    <span class="navbar-brand ml-lg-5 ml-3 mr-lg-5 mr-3 py-0 " >
+    <a class="" routerLink="/welcome"><img src='assets/healthlogo1.png' class='logo py-0 mr-3'/></a>
+    <a class="text-success text-decoration-none" routerLink="/home"> Health </a>
+    <i class="text-danger"> & </i><a class="text-primary text-decoration-none" routerLink="/fitness/fitness">
+        Fitness</a></span>
 
-    <button class="navbar-toggler hidden-sm-up" type="button"  type="button"
+    <button class="navbar-toggler hidden-sm-up menuOutline" type="button"  type="button"
     (click)="isNavbarCollapsed = !isNavbarCollapsed" data-target="#navbarsDefault"
      aria-controls="navbarsDefault" aria-expanded="false" aria-label="Toggle navigation">
 
-        <span class="navbar-toggler-icon "><mat-icon>more_vert</mat-icon></span>
+        <span class="navbar-toggler-icon text-primary"><mat-icon>menu</mat-icon></span>
     </button>
+<!-- </div> -->
 
     <div [ngbCollapse]="isNavbarCollapsed" id="navbarsDefault"
-     [ngClass]="{'dropNavBG shadow-lg p-2':!isNavbarCollapsed, 'collapse navbar-collapse':true }">
+     [ngClass]="{'dropNavBG shadow-lg p-2 mt-0':!isNavbarCollapsed, 'collapse navbar-collapse':true }">
 
         <ul class="navbar-nav mr-auto ">
 
-            <li class="nav-item" >
+            <li class="nav-item mb-3 mb-lg-0" >
                 <a mat-button routerLink='/home' (click)="isNavbarCollapsed = true"
                 class="nav-link shadow py-2 py-lg-0 pr-lg-2 pl-lg-2 pr-5 pl-5 ml-2 border-top"
               color ='primary'  routerLinkActive="text-warning shadow-none border-bottom">
               <mat-icon>home</mat-icon> </a>
+              <a class="float-right mr-3 mt-2 d-lg-none font-weight-bolder">
+                <mat-icon id='close' color='warn' (click)="isNavbarCollapsed = true">close</mat-icon> </a>
             </li>
 
-            <li *ngIf='userIsAuth' class="nav-item" >
+            <li *ngIf='userIsAuth' class="nav-item mb-3 mb-lg-0" >
                 <a routerLink='/create' mat-button (click)="isNavbarCollapsed = true"
                  class="nav-link shadow py-2 py-lg-0 pr-lg-2 pl-lg-2 pr-5 pl-5 ml-2 border-top"
                 color = 'primary' routerLinkActive="mat-warn shadow-none border-bottom"> New Post </a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item mb-2 mb-lg-0">
                 <a mat-button routerLink='/fitness/' (click)="isNavbarCollapsed = true"
                 class="nav-link  shadow py-2 py-lg-0 pr-lg-2 pl-lg-2 pr-5 pl-5 ml-2 border-top"
                 color ='primary'  routerLinkActive="text-warning shadow-none border-bottom"> Fitness </a>
             </li>
 
         </ul>
-        <ul class="navbar-nav mr-5">
+        <ul class="navbar-nav mr-5 mb-2 mb-lg-0">
 
             <li class="nav-item dropdown mr-5" ngbDropdown>
-                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink"
+                <a class="nav-link dropdown-toggle " id="navbarDropdownMenuLink"
                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ngbDropdownToggle>
 
                 </a>
-                <div class="dropdown-menu mr-5 border-0 shadow" aria-labelledby="navbarDropdownMenuLink" ngbDropdownMenu>
-                    <a class="dropdown-item mr-5" >1</a>
-                    <a class="dropdown-item mr-5" >2</a>
+                <div class="dropdown-menu pr-3 border-0 shadow" aria-labelledby="navbarDropdownMenuLink" ngbDropdownMenu>
+
+                    <a  class="nav-link dropdown-item ml-2 text-primary activedd"
+                    [routerLink]="userIsAuth ? ['/home'] : ['./auth/login']"
+                   (click)="isNavbarCollapsed = true">
+
+                  <span *ngIf='true'>
+                 <mat-icon class='shadow-sm rounded bg-transparent mr-1 '>account_circle</mat-icon>
+                    {{firstname+' '+lastname}} </span>
+                     <span *ngIf='!userIsAuth'>Login</span>
+                  </a>
+
+                 <a  class="nav-link dropdown-item ml-2 text-primary activedd" (click)="isNavbarCollapsed = true"
+                       routerLink="./auth/signup" >
+                       <mat-icon class='shadow-sm rounded bg-transparent mr-1'>face</mat-icon>
+                       Signup
+                </a>
+
+
+
                 </div>
+
             </li>
+
             <li class="nav-item " *ngIf="route !='/auth/login'">
                 <a class="nav-link " [routerLink]="userIsAuth ? ['/home'] : ['./auth/login']"
                   (click)="isNavbarCollapsed = true">
@@ -66,16 +87,18 @@
                     <span *ngIf='!userIsAuth' class="">Login</span>
                     <span *ngIf='userIsAuth'>
                       <mat-icon class='shadow-sm rounded bg-transparent mr-2 '>account_circle</mat-icon>
-                    {{firstname+' '+lastname}} </span></button>
+                    </span>
+                      <span *ngIf='userIsAuth'>{{firstname+' '+lastname}} </span>
+                    </button>
                 </a>
             </li>
-            <li *ngIf="!userIsAuth && route =='/auth/login'" class="nav-item">
+<!--             <li *ngIf="!userIsAuth && route =='/auth/login'" class="nav-item">
                 <button mat-button class="nav-link border-top border-bottom" (click)="isNavbarCollapsed = true"
                  routerLink="./auth/signup" >
                  <mat-icon class='shadow-sm rounded bg-transparent mr-2 '>face</mat-icon>
                  Signup</button>
             </li>
-
+ -->
             <li *ngIf='userIsAuth' class="nav-item">
                 <button mat-button (click)="onLogout()"
                 class="nav-link shadow-sm py-2 py-lg-0 pr-lg-2 pl-lg-2 pr-5 pl-5 ml-2 mt-1 border-top border-bottom"

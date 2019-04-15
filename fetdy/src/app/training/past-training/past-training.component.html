@@ -1,9 +1,11 @@
 <div class='container-fluid mt-5 overflow-hidden'>
-<mat-form-field class='col-lg-4 col-8'>
-    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+
+<mat-form-field class='col-lg-4 col-8 '>
+    <input matInput (keyup)="applyFilter($event.target.value)"
+    class="bg-white p-2" placeholder="Filter">
 </mat-form-field>
 
-<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 ">
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 ml-0">
 
     <!-- Date Column -->
     <ng-container matColumnDef="date">
@@ -30,10 +32,12 @@
     </ng-container>
 
      <!-- State Column -->
-     <ng-container matColumnDef="state">
+
+     <ng-container matColumnDef="state" >
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
         <td mat-cell *matCellDef="let element"> {{element.state }} </td>
       </ng-container>
+
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

@@ -5,6 +5,11 @@ import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
 
 import { environment } from '../../environments/environment';
+import { Store } from '@ngrx/store';
+import * as fromRoot from '../app.reducer';  // import everything from a file
+
+import * as UI from '../shared/ui.actions';
+
 const BACKEND_URL = environment.url;
 
 
@@ -19,8 +24,12 @@ export class AuthService {
   private userId: string;
   private authStatusLister = new Subject<boolean>();
   private namesListner = new Subject<string>();
-  Fname = 'Your Name' ;
-  constructor(private http: HttpClient, private router: Router) { }
+  Fname = '' ;
+
+
+
+  constructor(private http: HttpClient, private router: Router,
+      private store: Store<{ui: fromRoot.State}>) { }
 
   getToken() {
     return this.token;
@@ -50,7 +59,7 @@ export class AuthService {
     .subscribe(() => {
 
     this.loginUser(email, password);
-     // this.router.navigate(['/']);
+      this.router.navigate(['/home']);
     }, error => {
       console.log(error);
       this.authStatusLister.next(false);
@@ -63,11 +72,12 @@ export class AuthService {
   logOut() {
     this.token = null;
     this.isAuth = false;
+    this.namesListner.next('');
     this.authStatusLister.next(false);
     clearTimeout(this.tokenTimer);
     this.clearAuthData();
     this.userId = null;
-    this.router.navigate(['/']);
+    this.router.navigate(['/home']);
   }
 
   loginUser(email: string, password: string) {
@@ -86,17 +96,26 @@ export class AuthService {
         this.setAuthTimer(expiresInDuration);
         this.isAuth = true;
         this.userId = response.userId;
+
+        this.store.dispatch(new UI.StartLoading()); // Start isloading state management
+        // this.store.dispatch({type: 'START_LOADING'}); // start isLoading state management
+
         this.authStatusLister.next(true);
         const now = new Date();
         const expirationDate = new Date (now .getTime() + expiresInDuration * 1000);
-
         this.saveAuthData(token, expirationDate, this.userId, this.Fname);
-        this.router.navigate(['/']);
+
+        setTimeout( () => { this.store.dispatch(new UI.StopLoading()); } , 1000 ); // testing state management
+
+         this.router.navigate(['/home']);
 
 
       }
 
     }, error => {
+
+      this.store.dispatch(new UI.StopLoading());
+      // this.store.dispatch({type: 'STOP_LOADING'});
       this.authStatusLister.next(false);
     });
   }

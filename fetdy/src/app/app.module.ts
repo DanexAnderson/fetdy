@@ -14,6 +14,8 @@ import { PostsModule } from './post/post.module';
 import { StopTrainingComponent } from './training/current-training/stop-training.component';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { LandingPageComponent } from './dashboards/landing-page/landing-page.component';
+import { StoreModule } from '@ngrx/store';
+import { reducers } from './app.reducer';
 
 
 @NgModule({
@@ -33,6 +35,7 @@ import { LandingPageComponent } from './dashboards/landing-page/landing-page.com
     BrowserAnimationsModule,
     PostsModule,
     AngularSvgIconModule,
+    StoreModule.forRoot(reducers),
 
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},

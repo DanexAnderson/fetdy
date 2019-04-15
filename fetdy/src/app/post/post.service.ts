@@ -88,7 +88,7 @@ export class PostService {
 
     // const post: Post = { id: null, title: title, content: content};
                     // Post Response with Mongoose ID
-    this.http.post<{message: string, post: Post}>(BACKEND_URL + 'postData', postData)
+    this.http.post<{message: string, post: Post}>(BACKEND_URL + 'postdata', postData)
     .subscribe((responseData) => {
      /*  const post: Post = { id: responseData.post.id, title: title,
          content: content, imagePath: responseData.post.imagePath};

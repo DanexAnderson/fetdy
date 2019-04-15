@@ -7,7 +7,7 @@ import { LandingPageComponent } from './dashboards/landing-page/landing-page.com
 
 
 const routes: Routes = [
-  { path: '', component: ListComponent },
+  { path: '', redirectTo: '/welcome', pathMatch: 'full' },
   { path: 'welcome', component: LandingPageComponent },
   { path: 'create', component: CreateComponent, canActivate: [AuthGuard] },
   { path: 'home', component: ListComponent },
